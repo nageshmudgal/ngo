@@ -1,0 +1,214 @@
+{% extends "./base.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+<!--Carausel-->
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" style="margin-top: -10px;">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="media/static/banners/b1.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>First slide label</h1>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="media/static/banners/b2.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>Second slide label</h1>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="media/static/banners/b3.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>Third slide label</h1>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!--Our Work-->
+<div style="margin-top: 5%;">
+  <h1 style="text-align: center; margin: 30px;">Our Works</h1>
+</div>
+<br>
+<div class="row" style="width: 100%;">
+
+  <div class="card mx-auto" style="width: 17rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/food-for-child.png" class="card-img-top"
+      alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Food For Child</h5>
+      <p class="card-text">Daily 2000 people get food at NSS premises. Help those who need and restore their faith in
+        humanity. </p>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 17rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/surgery.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Operation/Surgery</h5>
+      <p class="card-text">Over 3,500 children are waiting for their corrective surgeries. Help them begin 2021 on a
+        brighter note. </p>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 17rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/ration-kit.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Ration Kit</h5>
+      <p class="card-text">We are aiming to provide free ration kits to 50,000 thousand families. Your Kindness can make
+        it possible. </p>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 17rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/artificial.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Artificial Limb Surgery</h5>
+      <p class="card-text">More than 890 people are waiting for Artificial Limbs. Let us be the light that brightens up
+        lives.</p>
+    </div>
+  </div>
+
+
+</div>
+<!-- NDUsuG3MOOYEpvT1fst5AeVtw8Km4m6Vu24HMOCTz8UvvmkftG-C7NH0kN5Whu9NVBc -->
+
+<!--Top donars-->
+<div style="background-color: azure;" class="mb-2">
+  <div style="margin-top: 5%;">
+    <h1 style="text-align: center; margin: 30px;">Top Donars</h1>
+  </div>
+  <br>
+  <div class="container marketing">
+    <div class="row">
+      {% for i in topdonars %}
+      <div class="col-lg-4 ">
+        <div class="card border-0" style="background-color: azure;">
+          <img src="../media/{{i.img}}" alt="" width="140" height="140" class="rounded-circle mx-auto">
+          <div class="card-body mx-auto">
+            <h2>{{i.uname}}</h2>
+            <p>Total donations:{{i.totaldonation}} </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+  <!--faq-->
+
+  <div class="accordion accordion-flush mx-auto my-5" style="width: 75%;" id="accordionFlushExample">
+    <h1 class="text-center">FAQ</h1><br>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          What is Sanjeevani Vikas Evam Jan Kalyan Samiti?
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Sanjeevani Vikas Evam Jan Kalyan Samiti is more than just an organization. It is a
+          grass roots movement that empowers the individual whether it is a volunteer or a donor to make a positive
+          difference in the life of child & women and provide them with the possibility of a brighter future.
+
+          It is a India based, volunteer run, non-profit, non-religious, non- political organization working to ensure
+          health, education and rural development for underprivileged children and women in India.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          What is Sanjeevani’s Vision?
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Our vision is to ensure that every underprivileged child or women attains his or her
+          right to education, health and opportunity.</div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+          What is Sanjeevani’s Mission?
+        </button>
+      </h2>
+      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+        data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Our mission is to educate, empower and enable every individual who wishes to make a
+          positive difference in the life of the underprivileged child and women.</div>
+      </div>
+    </div>
+  </div>
+
+  <!--about Us-->
+  <div id="aboutus" style="background-color: azure;" class="pt-2 pb-4">
+    <h1 style="text-align: center;">About Us</h1>
+    <br>
+    <div class="mx-auto" style="width: 75%; text-align: center;">
+      <p>The NGO-DARPAN is a platform that provides space for interface between VOs/NGOs and key Government Ministries /
+        Departments / Government Bodies, to start with. Later it is proposed to cover all Central Ministries /
+        Departments / Government Bodies.
+
+        This is a free facility offered by the NITI Aayog in association with National Informatics Centre to bring about
+        greater partnership between government & voluntary sector and foster better transparency, efficiency and
+        accountability.
+
+        The NGO-DARPAN started out as an initiative of the Prime Minister's Office, to create and promote a healthy
+        partnership between VOs/NGOs and the Government of India. The Portal is managed at present by NITI Aayog.
+
+        This module has been developed by National Informatics Centre (NIC), the premier ICT Organisation of the
+        Government of India under the aegis of Ministry of Electronics & Information Technology (MeitY) , Government of
+        India.</p>
+    </div>
+  </div>
+
+
+  <!--map-->
+  <br>
+  <div class="mx-auto" style="align-items: center;">
+    <h1 class="text-center">Address</h1><br>
+    <iframe style="margin-right: 5%; margin-left: 5%;"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14318.705812040562!2d78.1641554!3d26.2072013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x949ed3eb12f9d1bd!2sPRAEDICO%20GLOBAL%20RESEARCH%20PVT.%20LTD.!5e0!3m2!1sen!2sin!4v1651371489294!5m2!1sen!2sin"
+      width="90%" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  {% endblock %}

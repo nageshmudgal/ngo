@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+{% block content %}
+
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+  <h1>{{campaign.name}}</h1>
+  </div>
+
+  <div class="overflow-auto" style="height: 540px;">
+  
+
+<h5>{{campaign.date}},{{campaign.place}}</h5>
+  <br>
+  <img class="mx-5 rounded w-50 p-3" src="../media/{{campaign.img}}" >
+  <br><br>
+  <p class="mx-5">{{campaign.desc}}</p>
+</div>
+
+{% endblock %}

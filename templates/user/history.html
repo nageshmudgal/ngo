@@ -1,0 +1,96 @@
+{% extends "../base.html" %}
+{% block content %}
+<h1 style="margin-top: 20px; margin-left: 40px;">Donation history</h1>
+<br>
+<table class="table table-striped project-orders-table shadow p-3 mb-5 bg-body border rounded" style="width: 60%; margin-left: 40px;">
+    <thead>
+      <tr>
+        <th class="ml-5">Serial No.</th>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Actions</th>
+        
+      </tr>
+    </thead>
+    
+   
+    <tbody>
+      
+  
+      {% for i in donation %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.ordid}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.datetime_of_payment}} 
+        </td>
+        
+        <td style="width: 25%;">
+          
+          
+          <div class="d-flex align-items-center">
+              
+                <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                  <a name="delete" href="../adminmodule/deleteinstance?data={{i.pk}}&op=1"
+                    style="text-decoration:None; color:white;">Delete</a>
+                  <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                </button>
+              
+            
+          </div>
+  
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div style="margin-left: 40px;">Total Donation:{{donations.amount__sum}}</div>
+  
+  
+  <div style="margin-top: 5%;">
+    <h1 style="text-align: center; margin: 30px;">Our Works</h1>
+  </div>
+  <br>
+  <div class="row ">
+    
+  <div class="card mx-auto" style="width: 18rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/food-for-child.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Food For Child</h5>
+      <p class="card-text">Daily 2000 people get food at NSS premises. Help those who need and restore their faith in humanity. </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 18rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/surgery.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Operation/Surgery</h5>
+      <p class="card-text">Over 3,500 children are waiting for their corrective surgeries. Help them begin 2021 on a brighter note. </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 18rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/ration-kit.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Ration Kit</h5>
+      <p class="card-text">We are aiming to provide free ration kits to 50,000 thousand families. Your Kindness can make it possible. </p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  <div class="card mx-auto" style="width: 18rem;">
+    <img src="https://www.narayanseva.org/assets/generic_assets/images/artificial.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Artificial Limb Surgery</h5>
+      <p class="card-text">More than 890 people are waiting for Artificial Limbs. Let us be the light that brightens up lives.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+
+</div>
+
+{% endblock %}

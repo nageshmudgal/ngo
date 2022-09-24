@@ -1,0 +1,75 @@
+{% extends "./base.html" %}
+{% block content %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="addStateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Branch</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="../adminmodule/state" method="post" enctype="multipart/form-data">
+
+
+                    <p>State Name:</p>
+                    <input type="text" name="sname"><br>
+                    <p>Desc:</p>
+                    <input type="text" name="sdesc"><br>
+                    {% csrf_token %}
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Add"><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+    <h1>States</h1>
+</div>
+<table class="table table-striped project-orders-table shadow p-3 mb-5 bg-body border rounded">
+    <thead>
+        <tr>
+            <th class="ml-5">ID</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in states %}
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.name}}</td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                        <a name="edit" href="../adminmodule/activatebranch?data={{i.pk}}"
+                            style="text-decoration:None; color:white;">Edit</a>
+                        <i class="typcn typcn-edit btn-icon-append"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                        <a name="delete" href="../adminmodule/deletebranch?data={{i.pk}}"
+                            style="text-decoration:None; color:white;">Delete</a>
+                        <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStateModal">
+    Add State
+  </button>
+
+
+{% endblock %}

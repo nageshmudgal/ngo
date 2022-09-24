@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>User Login</h1>
+<form action="../user/login" method="post" enctype="multipart/form-data">
+
+    <p>Email:</p>
+    <input type="email" name="email"><br>
+    <p>Password:</p>
+    <input type="password" name="pas"><br>
+    {% csrf_token %}
+    <input type="submit" value="Log in" ><br>
+</form>
+{% endblock %}
+

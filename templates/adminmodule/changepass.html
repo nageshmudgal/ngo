@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+    <h2>Change Password</h2>
+</div>
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+<form action="../adminmodule/changepass" method="post" enctype="multipart/form-data">
+
+    <p>New Password:</p>
+    <input type="password" name="pas" required><br><br>
+    {% csrf_token %}
+    <input type="submit" value="Change"><br>
+</form>
+</div>
+{% endblock %}

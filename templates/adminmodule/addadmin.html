@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+{% block content %}
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+    <h2>Admins</h2>
+</div>
+<div class="row shadow p-3 mb-5 bg-body rounded m-1 border">
+<form action="../adminmodule/addadmin" method="post" enctype="multipart/form-data">
+
+    <p>Name:</p>
+    <input type="text" name="name" required><br>
+    <p>Email:</p>
+    <input type="email" name="email" required><br>
+    <p>Password:</p>
+    <input type="password" name="pas" required><br><br>
+    {% csrf_token %}
+    <input type="submit" value="Add"><br>
+</form>
+</div>
+{% endblock %}

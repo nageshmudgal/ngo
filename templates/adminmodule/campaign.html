@@ -1,0 +1,185 @@
+{% extends "./base.html" %}
+{% block content %}
+
+
+
+
+<script>
+  function filldata(names) {
+    console.log(names)
+    console.log(names.email)
+    document.getElementById("id").value = names.pk
+    document.getElementById("editname").value = names.name
+    document.getElementById("editotype").value = names.otype
+    // document.getElementById("editdoj").value=names.doj
+  }
+</script>
+
+
+<!-- add org Modal -->
+<div class="modal fade" id="addOrgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Organisation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="../adminmodule/campaign" method="post" enctype="multipart/form-data">
+          <p>Campaign Name:</p>
+          <input type="text" name="name" required><br>
+          <p>Type:</p>
+          <input type="text" name="ctype" required><br>
+          <p>Place:</p>
+          <input type="text" name="place" required><br>
+          <p>Pictures:</p>
+          <input type="file" name="imag" required><br>
+          <p>Describe:</p>
+          <textarea name="desc" rows="4" cols="60" required></textarea><br>
+          <!-- <p>Date of Joining:</p>
+          <input type="text" name="doj" placeholder="yyyy-mm-dd"><br> -->
+
+
+          {% csrf_token %}
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" value="Add"><br>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- update org Modal -->
+<div class="modal fade" id="editOrgModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit member</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="../adminmodule/updateorg" method="post" enctype="multipart/form-data">
+          <input type="name" name="id" id="id" hidden>
+          <p>Organisation Name:</p>
+          <input type="text" name="name" id="editname"><br>
+          <p>Type:</p>
+          <input type="text" name="otype" id="editotype"><br>
+          <!-- <p>Date of Joining:</p>
+          <input type="text" name="doj" id="editdoj"><br> -->
+
+
+
+          {% csrf_token %}
+          <div class="modal-footer">
+            <input type="submit" class="btn btn-primary" value="Save"><br>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row shadow p-3 mb-3 bg-body rounded m-1 border">
+  <h2>Campaigns</h2>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addOrgModal"
+  style="margin-left: 85%;">
+  Add Organisation
+</button>
+
+{% if campaigns %}
+<!-- <table class="table table-striped project-orders-table shadow p-3 mb-5 bg-body border rounded">
+  <thead>
+    <tr>
+      <th class="ml-5">SNo.</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Date</th>
+      <th>Place</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {% for i in campaigns %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.ctype}}</td>
+      <td>{{i.date}}</td>
+      <td>{{i.place}}</td>
+      <td>
+        
+        <div class="d-flex align-items-center" >
+          <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+            
+            
+            <a id="activate" href="../adminmodule/viewcamp?data={{i.pk}}"
+              style="text-decoration:None; color:white;">View</a>
+            <i class="typcn typcn-edit btn-icon-append"></i>
+          </button>
+          
+          <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+            <a name="delete" href="../adminmodule/deleteinstance?data={{i.pk}}&op=4"
+              style="text-decoration:None; color:white;">Delete</a>
+            <i class="typcn typcn-delete-outline btn-icon-append"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    
+    {% endfor %}
+  </tbody>
+</table> -->
+{% for i in campaigns %}
+<div
+  class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative mx-auto"
+  style="height: 35%; width: 95%;">
+  <div class="col p-4 d-flex flex-column position-static">
+    <strong class="d-inline-block mb-1 text-primary">Place {{i.place}}</strong>
+    <h4 class="mb-0">{{i.name}}</h4>
+    <div class="mb-1 text-muted">{{i.date}}</div>
+    <p class="card-text mb-auto">{{i.desc| truncatechars:240}}</p> <!-- how much content you wanna show -->
+    <div class="my-0">
+      <a href="../adminmodule/viewcamp?data={{i.pk}}" role="button" class="btn btn-primary mb-0">Continue reading</a>
+    </div>
+
+  </div>
+  <div class="col-auto" style="height: 80%; width: 20%; padding-top: 2%; padding-left: 0%;">
+    <img class="rounded my-auto" style="height: 100%; width: 100%;" src="../media/{{i.img}}">
+  </div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination" class="mx-auto">
+    {% if campaigns.has_previous %}
+    <li class="page-item"><a class="page-link" href="{% url 'campaign' %}?page={{ campaigns.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="#">{{campaigns.number}}</a></li>
+    {% if campaigns.has_next %}
+    <li class="page-item"><a class="page-link" href="{% url 'campaign' %}?page={{ campaigns.next_page_number }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+{% endfor %}
+{% else %}
+<h3 class="mx-auto" style="width: 300px;">
+  There is no Camaigns
+</h3>
+{% endif %}
+
+
+
+
+{% endblock %}
